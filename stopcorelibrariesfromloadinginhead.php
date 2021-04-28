@@ -31,16 +31,17 @@ class plgSystemStopCoreLibrariesFromLoadinginHead extends JPlugin {
     {
         // Application Object
         $app = JFactory::getApplication();
+		$baseurl = JUri::base();
 
         // Front only
         if( $app instanceof JApplicationSite )
         {
             $doc = JFactory::getDocument();
 			//JS
-			unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']); //Don't want the core bootstrap js 
-			unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);//don't need this jquery plugin for image captions
+			unset($doc->_scripts[$baseurl.'/media/jui/js/bootstrap.min.js']); //Don't want the core bootstrap js 
+			unset($doc->_scripts[$baseurl.'/media/system/js/caption.js']);//don't need this jquery plugin for image captions
 			//CSS    
-			unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);//Don't need the core bootstrap css
+			unset($doc->_stylesheets[$baseurl.'/media/jui/js/bootstrap.css']);//Don't need the core bootstrap css
         }
     }
 	
