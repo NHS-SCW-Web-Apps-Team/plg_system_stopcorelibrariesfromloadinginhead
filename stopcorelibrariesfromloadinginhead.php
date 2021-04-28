@@ -30,18 +30,20 @@ class plgSystemStopCoreLibrariesFromLoadinginHead extends JPlugin {
 	public function onBeforeCompileHead()
     {
         // Application Object
-        $app = JFactory::getApplication();
-		$baseurl = JUri::base();
+        $app = JFactory::getApplication();		
 
         // Front only
         if( $app instanceof JApplicationSite )
         {
             $doc = JFactory::getDocument();
 			//JS
-			unset($doc->_scripts[$baseurl.'/media/jui/js/bootstrap.min.js']); //Don't want the core bootstrap js 
-			unset($doc->_scripts[$baseurl.'/media/system/js/caption.js']);//don't need this jquery plugin for image captions
+			unset($doc->_scripts[JURI::root(true).'media/jui/js/bootstrap.min.js']); //Don't want the core bootstrap js 
+			//unset($doc->_scripts[JURI::root(true).'/media/system/js/caption.js']);//don't need this jquery plugin for image captions but it will throw up errors as joomla uses jcaption throughout
+			//unset($doc->_scripts[JURI::root(true).'/media/jui/js/jquery-noconflict.js']);
+			//unset($doc->_scripts[JURI::root(true).'/media/jui/js/jquery-migrate.min.js']);
+		
 			//CSS    
-			unset($doc->_stylesheets[$baseurl.'/media/jui/js/bootstrap.css']);//Don't need the core bootstrap css
+			unset($doc->_stylesheets[JURI::root(true).'/media/jui/js/bootstrap.css']);//Don't need the core bootstrap css
         }
     }
 	
